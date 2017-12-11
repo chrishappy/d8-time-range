@@ -1,0 +1,8 @@
+{
+  "name": "chris-happy7/time-range",
+  "type": "drupal-module",
+  "description": "Provides a timerange field.",
+  "homepage": "https://github.com/Chris-Happy7/d8-time-range/",
+  "license": "GPL-2.0+",
+  "minimum-stability": "dev"
+}
