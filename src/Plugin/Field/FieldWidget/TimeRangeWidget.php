@@ -7,14 +7,13 @@ use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\datetime_range\Plugin\Field\FieldType\DateRangeItem;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Plugin implementation of the 'daterange_time_only' widget.
+ * Plugin implementation of the 'time_range' widget.
  *
  * @FieldWidget(
- *   id = "daterange_time_only",
+ *   id = "time_range",
  *   label = @Translation("Time range"),
  *   field_types = {
  *     "daterange"
@@ -58,27 +57,11 @@ class TimeRangeWidget extends TimeRangeWidgetBase implements ContainerFactoryPlu
    */
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
     $element = parent::formElement($items, $delta, $element, $form, $form_state);
-
-    // Identify the type of date and time elements to use.
-    switch ($this->getFieldSetting('datetime_type')) {
-      case DateRangeItem::DATETIME_TYPE_DATE:
-      case DateRangeItem::DATETIME_TYPE_ALLDAY:
-        $date_type = 'date';
-        $time_type = 'none';
-        $date_format = $this->dateStorage->load('html_date')->getPattern();
-        $time_format = '';
-        break;
-
-      default:
-        $date_type = 'date';
-        $time_type = 'time';
-        $date_format = $this->dateStorage->load('html_date')->getPattern();
-        $time_format = $this->dateStorage->load('html_time')->getPattern();
-        break;
-    }
+    $time_type = 'time';
+    $time_format = $this->dateStorage->load('html_time')->getPattern();
 
     $element['value'] += [
-      '#date_date_format' => $date_format,
+      '#date_date_format' => 'none',
       '#date_date_element' => 'none',
       '#date_date_callbacks' => [],
       '#date_time_format' => $time_format,
@@ -87,7 +70,7 @@ class TimeRangeWidget extends TimeRangeWidgetBase implements ContainerFactoryPlu
     ];
 
     $element['end_value'] += [
-      '#date_date_format' => $date_format,
+      '#date_date_format' => 'none',
       '#date_date_element' => 'none',
       '#date_date_callbacks' => [],
       '#date_time_format' => $time_format,

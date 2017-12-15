@@ -1,13 +1,47 @@
 <?php
 
+/**
+ * @file
+ * Module implementation file.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function time_range_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.time_range':
+      $output = '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('This module not stored time data. The storage of time is provided by the core.  
+') . '</p>';
+      $output .= '<dl>';
+      $output .= '<dt>' . t('General') . '</dt>';
+      $output .= '<dd>' . t('Create a Date Range field, select Day and time as field type.') . '</dd>';
+      $output .= '<dd>' . t("To select Time range, go to your content type\'s form display settings 
+and select Time Range.") . '</dd>';
+      $output .= '<dd>' . t("If you don\'t want to see the date on content\'s display, go to your content type\'s display settings and change the 
+Date/time format in your style.") . '</dd>';
+      $output .= '<dd>' . t('If you have suggestions or questions . You can write down issue in  <a href="https://github.com/DravenK/time-range/issues"> time_range</a>\'s page on github  , or <a href="https://www.drupal.org/project/time_range">time_range</a>\'s project page on drupal.org .') . '</dd>';
+      $output .= '</dl>';
+
+      return $output;
+  }
+  return NULL;
+}
+
+/**
+ * Implements hook_field_widget_info_alter().
+ */
 function time_range_field_widget_info() {
-  return array(
-    'daterange_time_only' => array(
+  return [
+    'time_range' => [
       'label' => t('Time Range'),
-      'field types' => array('datetime_range'),
-      'settings' => array(
-        'add_new_text' => 'Add new customer...', //This is probably unneeded
-      ),
-    ),
-  );
+      'field types' => ['datetime_range'],
+      'settings' => [
+        'add_new_text' => 'Add new customer...',
+      ],
+    ],
+  ];
 }

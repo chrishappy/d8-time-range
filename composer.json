@@ -1,8 +1,12 @@
 {
-  "name": "chris-happy7/time-range",
+  "name": "drupal/time_range",
   "type": "drupal-module",
-  "description": "Provides a timerange field.",
-  "homepage": "https://github.com/Chris-Happy7/d8-time-range/",
+  "description": "Provides the form widget to fill in time range.",
+  "homepage": "https://github.com/DravenK/time-range.git",
   "license": "GPL-2.0+",
+  "support": {
+    "issues": "https://github.com/DravenK/time-range/issues",
+    "source": "https://github.com/DravenK/time-range.git"
+  },
   "minimum-stability": "dev"
 }
