@@ -1,9 +1,8 @@
 name: 'Time Range'
 type: module
-description: 'Provides the ability to store start and end times.'
-package: Fields
+description: 'Provides the form widget to fill in time range.'
 core: 8.x
-project: 'drupal'
+package: Field types
 dependencies:
-  - datetime
-  - datetime_range
+  - drupal:datetime
+  - drupal:datetime_range
